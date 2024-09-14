@@ -7,7 +7,7 @@ add_shortcode( 'kinra_submit_product', 'kinra_submit_product_form' );
 function kinra_submit_product_form() {
     ob_start();
     ?>
-    <form id="kinra_product_form" method="post">
+    <form id="kinra_product_form" class="kn-form" method="post">
         <div class="form-group kn-block kn-mb-4">
             <label for="seller_name" class="kn-block kn-mb-1.5"><?php _e( "Nama Lengkap", "kinra-lite" ); ?><sup>*</sup></label>
             <input type="text" class="form-control kn-border kn-border-neutral-400 kn-px-4 kn-py-3 kn-w-full" id="seller_name" name="seller_name" aria-describedby="seller_name_error" placeholder="<?php _e( "John Doe", "kinra-lite" ); ?>" required>

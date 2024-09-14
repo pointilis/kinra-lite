@@ -125,3 +125,21 @@ function kinra_vacancy_register_fields() {
     ));
 }
 add_action( 'rest_api_init', 'kinra_vacancy_register_fields' );
+
+/**
+ * Added post meta after post content
+ */
+add_filter( 'the_content', 'kinra_vacancy_meta_after_content' );
+function kinra_vacancy_meta_after_content( $content ) {
+	if ( get_post_type() === 'kinra_vacancy' ) {
+		$content .= '<div class="vacancy-meta">
+			<h3 class="kn-text-xl kn-mb-2 kn-font-semibold">' . __( 'Kontak Pemberi Kerja', 'kinra-lite' ) . '</h3>
+			<p class="!kn-mb-1 !kn-mt-0"><strong>' . __( 'Name', 'kinra-lite' ) . ':</strong> ' . get_post_meta( get_the_ID(), 'employer_name', true ) . '</p>
+			<p class="!kn-mb-1 !kn-mt-0"><strong>' . __( 'Phone Number', 'kinra-lite' ) . ':</strong> ' . get_post_meta( get_the_ID(), 'employer_phone_number', true ) . '</p>
+			<p class="!kn-mb-1 !kn-mt-0"><strong>' . __( 'Email', 'kinra-lite' ) . ':</strong> ' . get_post_meta( get_the_ID(), 'employer_email', true ) . '</p>
+			<p class="!kn-mb-1 !kn-mt-0"><strong>' . __( 'Perusahaan', 'kinra-lite' ) . ':</strong> ' . get_post_meta( get_the_ID(), 'company', true ) . '</p>
+		</div>';
+	}
+
+	return $content;
+}

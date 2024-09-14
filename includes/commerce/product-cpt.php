@@ -127,10 +127,10 @@ add_filter( 'the_content', 'kinra_product_meta_after_content' );
 function kinra_product_meta_after_content( $content ) {
 	if ( get_post_type() === 'kinra_product' ) {
 		$content .= '<div class="product-meta">
-			<h3>' . __( 'Seller Details', 'kinra-lite' ) . '</h3>
-			<p><strong>' . __( 'Name', 'kinra-lite' ) . ':</strong> ' . get_post_meta( get_the_ID(), 'seller_name', true ) . '</p>
-			<p><strong>' . __( 'Phone Number', 'kinra-lite' ) . ':</strong> ' . get_post_meta( get_the_ID(), 'seller_phone_number', true ) . '</p>
-			<p><strong>' . __( 'Email', 'kinra-lite' ) . ':</strong> ' . get_post_meta( get_the_ID(), 'seller_email', true ) . '</p>
+			<h3 class="kn-text-xl kn-mb-2 kn-font-semibold">' . __( 'Seller Details', 'kinra-lite' ) . '</h3>
+			<p class="!kn-mb-1 !kn-mt-0"><strong>' . __( 'Name', 'kinra-lite' ) . ':</strong> ' . get_post_meta( get_the_ID(), 'seller_name', true ) . '</p>
+			<p class="!kn-mb-1 !kn-mt-0"><strong>' . __( 'Phone Number', 'kinra-lite' ) . ':</strong> ' . get_post_meta( get_the_ID(), 'seller_phone_number', true ) . '</p>
+			<p class="!kn-mb-1 !kn-mt-0"><strong>' . __( 'Email', 'kinra-lite' ) . ':</strong> ' . get_post_meta( get_the_ID(), 'seller_email', true ) . '</p>
 		</div>';
 	}
 
