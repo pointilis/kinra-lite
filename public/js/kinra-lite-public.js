@@ -143,8 +143,8 @@
 			success: function(response) {
 				if (action == 'featured') {
 					$('#featured_media').val(response.id);
-					var image = `<img src="${response.source_url}">`
-					$('#featured_media-preview').html(image);
+					var image = `<img src="${response.source_url}" class="kn-absolute kn-w-full kn-h-full kn-top-0 kn-left-0 kn-right-0 kn-bottom-0 kn-object-cover">`
+					$('#featured_media-preview').html(`<div class="kn-w-56 kn-h-56 kn-relative">${image}</div>`);
 				}
 			}
 		});
