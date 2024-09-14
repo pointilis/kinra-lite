@@ -149,4 +149,42 @@
 			}
 		});
 	});
+
+	// ...
+	// Registration
+	// ...
+	$("form#kinra_register_form").validate({
+		submitHandler: function(form) {
+			let urlParams = new URLSearchParams($(form).serialize());
+			let unserializedData = {};
+
+			for (let [key, value] of urlParams) {
+				unserializedData[key] = value;
+			}
+
+			$.ajax({
+				method: "POST",
+				url: kinraVar.resturl + "wp/v2/users",
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader('X-WP-Nonce', kinraVar.restnonce);
+				},
+				data: {
+					name: unserializedData.name,
+					email: unserializedData.email,
+					password: unserializedData.password,
+					roles: ["author"],
+					meta: {
+						phone_number: unserializedData.phone_number,
+					}
+				},
+				success: function(response) {
+					window.location.href = response.guid.raw;
+				},
+			});
+
+			return false;
+		},
+		onkeyup: false,
+		errorElement: "span",
+	});
 })( jQuery );

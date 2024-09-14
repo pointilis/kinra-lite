@@ -89,7 +89,7 @@ function kinra_vacancy_list() {
                 </tr>
             <?php endwhile; wp_reset_query(); ?>
         </tbody>
-    </ul>
+    </table>
 
     <div class="kn-pagination">
         <?php 

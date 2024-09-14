@@ -139,6 +139,13 @@ class Kinra_Lite {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/vacancy/vacancy-cpt.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/vacancy/shortcodes.php';
 
+		/**
+		 * Register user.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/user/class-rest-user.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/user/functions.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/user/shortcodes.php';
+
 		$this->loader = new Kinra_Lite_Loader();
 
 	}
