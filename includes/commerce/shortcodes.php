@@ -69,22 +69,37 @@ function kinra_products_list() {
     ob_start();
     ?>
 
-    <ul>
+    <ul class="kn-list-product kn-list-none kn-p-0 kn-m-0">
         <?php while( $products->have_posts() ) : $products->the_post(); 
             $seller_name = get_post_meta( get_the_ID(), 'seller_name', true );
             $seller_phone_number = get_post_meta( get_the_ID(), 'seller_phone_number', true );
             $seller_email = get_post_meta( get_the_ID(), 'seller_email', true );
+            $full_path = WP_PLUGIN_URL . '/kinra-lite';
         ?>
-            <li>
-                <h3><a href="<?php echo esc_url(the_permalink()); ?>"><?php the_title(); ?></a></h3>
-                <div><?php _e( 'Penjual', 'kinra-lite' ); ?>: <?php echo esc_html( $seller_name ); ?></div>
-                <div><?php _e( 'Nomor Handphone', 'kinra-lite' ); ?>: <?php echo esc_html( $seller_phone_number ); ?></div>
-                <div><?php _e( 'Email', 'kinra-lite' ); ?>: <?php echo esc_html( $seller_email ? $seller_email : '&mdash;' ); ?></div>
+            <li class="kn-block kn-mt-5 kn-flex">
+                <div class="kn-featured-image">
+                    <div class="kn-w-36 kn-relative">
+                        <?php if ( has_post_thumbnail() ) : ?>
+                            <?php the_post_thumbnail( 'thumbnail', array(
+                                'class' => 'kn-w-full kn-h-auto',
+                            ) ); ?>
+                        <?php else : ?>
+                            <img src="<?php echo esc_url( $full_path . '/public/images/no-image-available.jpg' ); ?>" alt="<?php the_title(); ?>" class="kn-w-full kn-h-auto">
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <div class="kn-content kn-pl-4">
+                    <h3 class="kn-mt-0 kn-mb-2.5 kn-text-xl kn-font-semibold"><a href="<?php echo esc_url(the_permalink()); ?>" class="kn-no-underline"><?php the_title(); ?></a></h3>
+                    <div><?php _e( 'Penjual', 'kinra-lite' ); ?>: <?php echo esc_html( $seller_name ); ?></div>
+                    <div><?php _e( 'Nomor Handphone', 'kinra-lite' ); ?>: <?php echo esc_html( $seller_phone_number ); ?></div>
+                    <div><?php _e( 'Email', 'kinra-lite' ); ?>: <?php echo esc_html( $seller_email ? $seller_email : '&mdash;' ); ?></div>
+                </div>
             </li>
         <?php endwhile; wp_reset_query(); ?>
     </ul>
 
-    <div class="pagination">
+    <div class="kn-pagination">
         <?php 
             echo paginate_links( array(
                 'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
@@ -96,8 +111,8 @@ function kinra_products_list() {
                 'end_size'     => 2,
                 'mid_size'     => 1,
                 'prev_next'    => true,
-                'prev_text'    => sprintf( '<i></i> %1$s', __( 'Newer Posts', 'text-domain' ) ),
-                'next_text'    => sprintf( '%1$s <i></i>', __( 'Older Posts', 'text-domain' ) ),
+                'prev_text'    => sprintf( '<i></i> %1$s', __( 'Newer', 'text-domain' ) ),
+                'next_text'    => sprintf( '%1$s <i></i>', __( 'Older', 'text-domain' ) ),
                 'add_args'     => false,
                 'add_fragment' => '',
             ) );
