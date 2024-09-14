@@ -51,6 +51,7 @@ function kinra_product_cpt() {
 		'publicly_queryable'    => true,
 		'capability_type'       => 'post',
 		'show_in_rest'          => true,
+		'taxonomies'          	=> array( 'category' ),
 	);
 	register_post_type( 'kinra_product', $args );
 

@@ -51,6 +51,7 @@ function kinra_vacancy_cpt() {
 		'publicly_queryable'    => true,
 		'capability_type'       => 'post',
 		'show_in_rest'          => true,
+		'taxonomies'          	=> array( 'category' ),
 	);
 	register_post_type( 'kinra_vacancy', $args );
 
@@ -142,4 +143,18 @@ function kinra_vacancy_meta_after_content( $content ) {
 	}
 
 	return $content;
+}
+
+/**
+ * Override archive template for vacancy post type
+ */
+// add_filter( 'archive_template', 'kinra_vacancy_post_type_template' ) ;
+function kinra_vacancy_post_type_template( $archive_template ) {
+	global $post;
+
+	if ( is_post_type_archive ( 'kinra_vacancy' ) ) {
+		$archive_template = dirname( __FILE__ ) . '/post-type-template.php';
+	}
+
+	return $archive_template;
 }
