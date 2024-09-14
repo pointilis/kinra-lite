@@ -344,3 +344,9 @@
 .kn-table td {
   border: 1px solid #e5e5e5;
 }
+
+.single .kinra_vacancy,
+.single .kinra_product {
+  max-width: 768px;
+  margin: 0 auto;
+}
