@@ -38,6 +38,14 @@ function kinra_submit_product_form() {
             <span class="error" id="content_error"></span>
         </div>
 
+        <div class="form-group upload-image">
+            <div id="featured_media-preview"></div>
+            <label for="image"><?php _e( "Gambar Produk", "kinra-lite" ); ?><sup>*</sup></label>
+            <input type="file" accept="image/*" style="display: none;" data-action="featured" required>
+            <input type="hidden" name="featured_media" id="featured_media" value="">
+            <button type="button" id="upload-image-button"><?php _e( "Upload Gambar", "kinra-lite" ); ?></button>
+        </div>
+
         <button type="submit"><?php _e( "Submit Produk", "kinra-lite" ); ?></button>
     </form>
     <?php

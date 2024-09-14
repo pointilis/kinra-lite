@@ -50,6 +50,7 @@
 				data: {
 					title: unserializedData.title,
 					content: unserializedData.content,
+					featured_media: unserializedData.featured_media,
 					status: 'pending',
 					meta: {
 						seller_name: unserializedData.seller_name,
@@ -89,6 +90,7 @@
 				data: {
 					title: unserializedData.title,
 					content: unserializedData.content,
+					featured_media: unserializedData.featured_media,
 					status: 'pending',
 					meta: {
 						employer_name: unserializedData.employer_name,
@@ -111,10 +113,20 @@
 	// ...
 	// Upload media
 	// ...
-	$(document).on('change', 'input#upload-media', function(e) {
-		let $this = $(this);
-		let $container = $this.closest('#upload-media-container');
-		let formData = new FormData();
+	$(document).on('click', '.upload-image button#upload-image-button', function(e) {
+		e.preventDefault();
+
+		var container$ = $(this).closest('.upload-image');
+		var fileInput$ = container$.find('input[type="file"]');
+
+		// trigger select file
+		fileInput$.trigger('click');
+	});
+
+	// file selected
+	$(document).on('change', '.upload-image input[type="file"]', function(e) {
+		var action = $(this).data('action');
+		var formData = new FormData();
 		formData.append('file', e.target.files[0]);
 
 		$.ajax({
@@ -129,10 +141,11 @@
 			data: formData,
 			enctype: 'multipart/form-data',
 			success: function(response) {
-				let src = response.source_url;
-				let id = response.id;
-
-				$container.find('input#upload-media').value(id);
+				if (action == 'featured') {
+					$('#featured_media').val(response.id);
+					var image = `<img src="${response.source_url}">`
+					$('#featured_media-preview').html(image);
+				}
 			}
 		});
 	});
