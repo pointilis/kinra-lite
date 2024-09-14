@@ -178,6 +178,10 @@
   display: flex;
 }
 
+.kn-table {
+  display: table;
+}
+
 .kn-h-56 {
   height: 14rem;
 }
@@ -239,6 +243,11 @@
   background-color: rgb(234 88 12 / var(--tw-bg-opacity));
 }
 
+.kn-bg-teal-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(13 148 136 / var(--tw-bg-opacity));
+}
+
 .kn-object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -246,6 +255,10 @@
 
 .kn-p-0 {
   padding: 0px;
+}
+
+.kn-p-2 {
+  padding: 0.5rem;
 }
 
 .kn-px-3 {
@@ -275,6 +288,10 @@
 
 .kn-pl-4 {
   padding-left: 1rem;
+}
+
+.kn-text-left {
+  text-align: left;
 }
 
 .kn-text-xl {
@@ -317,4 +334,13 @@
 .kn-form select,
 .kn-form textarea {
   width: calc(100% - 2rem);
+}
+
+.kn-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.kn-table td {
+  border: 1px solid #e5e5e5;
 }

@@ -67,23 +67,28 @@ function kinra_vacancy_list() {
     ob_start();
     ?>
 
-    <ul class="kn-list-product kn-list-none kn-p-0 kn-m-0">
-        <?php while( $vacancys->have_posts() ) : $vacancys->the_post(); 
-            $employer_name = get_post_meta( get_the_ID(), 'employer_name', true );
-            $employer_phone_number = get_post_meta( get_the_ID(), 'employer_phone_number', true );
-            $employer_email = get_post_meta( get_the_ID(), 'employer_email', true );
-            $company = get_post_meta( get_the_ID(), 'company', true );
-        ?>
-            <li class="kn-block kn-mt-5 kn-flex">
-                <div class="kn-block">
-                    <h3 class="kn-mt-0 kn-mb-2.5 kn-text-xl kn-font-semibold"><a href="<?php echo esc_url(the_permalink()); ?>" class="kn-no-underline"><?php the_title(); ?></a></h3>
-                    <div><?php _e( 'Perusahaan', 'kinra-lite' ); ?>: <?php echo esc_html( $company ); ?></div>
-                    <div><?php _e( 'Oleh', 'kinra-lite' ); ?>: <?php echo esc_html( $employer_name ); ?></div>
-                    <div><?php _e( 'Nomor Handphone', 'kinra-lite' ); ?>: <?php echo esc_html( $employer_phone_number ); ?></div>
-                    <div><?php _e( 'Email', 'kinra-lite' ); ?>: <?php echo esc_html( $employer_email ? $employer_email : '&mdash;' ); ?></div>
-                </div>
-            </li>
-        <?php endwhile; wp_reset_query(); ?>
+    <table class="kn-table">
+        <thead>
+            <tr class="kn-bg-teal-600 kn-text-white">
+                <th class="kn-text-left kn-p-2"><?php _e( "Posisi", "kinra-lite" ); ?></th>
+                <th class="kn-text-left kn-p-2"><?php _e( "Perusahaan", "kinra-lite" ); ?></th>
+                <th class="kn-text-left kn-p-2"><?php _e( "Oleh", "kinra-lite" ); ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while( $vacancys->have_posts() ) : $vacancys->the_post(); 
+                $employer_name = get_post_meta( get_the_ID(), 'employer_name', true );
+                $employer_phone_number = get_post_meta( get_the_ID(), 'employer_phone_number', true );
+                $employer_email = get_post_meta( get_the_ID(), 'employer_email', true );
+                $company = get_post_meta( get_the_ID(), 'company', true );
+            ?>
+                <tr>
+                    <td class="kn-p-2"><h3 class="kn-m-0 kn-text-xl kn-font-semibold"><a href="<?php echo esc_url(the_permalink()); ?>" class="kn-no-underline"><?php the_title(); ?></a></h3></td>
+                    <td class="kn-p-2"><?php echo esc_html( $company ); ?></td>
+                    <td class="kn-p-2"><?php echo esc_html( $employer_name ); ?></td>
+                </tr>
+            <?php endwhile; wp_reset_query(); ?>
+        </tbody>
     </ul>
 
     <div class="kn-pagination">
